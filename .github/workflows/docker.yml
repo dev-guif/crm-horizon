@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Aumentar swap (evita out of memory)
         run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
           sudo fallocate -l 6G /swapfile
           sudo chmod 600 /swapfile
           sudo mkswap /swapfile
