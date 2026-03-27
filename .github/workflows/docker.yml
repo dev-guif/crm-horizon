@@ -9,6 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Aumentar swap (evita out of memory)
+        run: |
+          sudo fallocate -l 6G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: Checkout código
         uses: actions/checkout@v3
 
@@ -23,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: guifdevp/crm-horizon:latest
+          tags: SEU_USUARIO_DOCKERHUB/crm-horizon:latest
