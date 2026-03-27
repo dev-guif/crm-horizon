@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: guifdevp/crm-horizon:latest
+          tags: guifdev/crm-horizon:latest
