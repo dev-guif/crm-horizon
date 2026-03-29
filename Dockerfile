@@ -1,26 +1,6 @@
-name: Build and Push Docker Image
+FROM chatwoot/chatwoot:v4.11.0
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
-
-      - name: Login no Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build e Push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: guifdevp/crm-horizon:latest
+COPY public/brand-assets/horizon/logo.svg /app/public/brand-assets/logo.svg
+COPY public/brand-assets/horizon/logo_dark.svg /app/public/brand-assets/logo_dark.svg
+COPY public/brand-assets/horizon/logo_thumbnail.svg /app/public/brand-assets/logo_thumbnail.svg
+COPY public/manifest.json /app/public/manifest.json
